@@ -36,5 +36,11 @@
     "components": [
       "card"
     ]
+  },
+  {
+    "id": "image-carousel",
+    "components": [
+      "image-item"
+    ]
   }
 ]
