@@ -209,7 +209,7 @@
     "id": "image-item",
     "fields": [
       {
-        "component": "reference",
+        "component": "text",
         "valueType": "string",
         "name": "image",
         "label": "Image",
