@@ -29,11 +29,6 @@ jobs:
         AIO_RUNTIME_AUTH: ${{ secrets.AIO_RUNTIME_AUTH }}
         AIO_RUNTIME_NAMESPACE: ${{ secrets.AIO_RUNTIME_NAMESPACE }}
         AIO_RUNTIME_APIHOST: ${{ secrets.AIO_RUNTIME_APIHOST || 'https://adobeioruntime.net' }}
-      run: |
-        aio rt property set \
-          --auth $AIO_RUNTIME_AUTH \
-          --namespace $AIO_RUNTIME_NAMESPACE \
-          --apihost $AIO_RUNTIME_APIHOST
 
     - name: Run AIO-CLI Command
       run: |
