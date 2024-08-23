@@ -1,0 +1,37 @@
+name: Run Adobe AIO-CLI Command
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-aio-cli:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install Adobe AIO-CLI
+      run: npm install -g @adobe/aio-cli
+
+    - name: Configure AIO-CLI Runtime Properties
+      env:
+        AIO_RUNTIME_AUTH: ${{ secrets.AIO_RUNTIME_AUTH }}
+        AIO_RUNTIME_NAMESPACE: ${{ secrets.AIO_RUNTIME_NAMESPACE }}
+        AIO_RUNTIME_APIHOST: ${{ secrets.AIO_RUNTIME_APIHOST || 'https://adobeioruntime.net' }}
+      run: |
+        aio rt property set \
+          --auth $AIO_RUNTIME_AUTH \
+          --namespace $AIO_RUNTIME_NAMESPACE \
+          --apihost $AIO_RUNTIME_APIHOST
+
+    - name: Run AIO-CLI Command
+      run: |
+        aio rt property get --all # Replace with your desired AIO-CLI command
